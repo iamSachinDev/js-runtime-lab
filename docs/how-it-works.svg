@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-labelledby="t d">
+  <title id="t">How JS Runtime Lab works</title>
+  <desc id="d">Five stages: your code is instrumented by Babel, run in a sandboxed Web Worker, recorded as a trace of typed events, then replayed step by step.</desc>
+  <defs>
+    <radialGradient id="g" cx="50%" cy="0%" r="70%"><stop offset="0" stop-color="#22d3ee" stop-opacity=".1"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5"/></filter>
+  </defs>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'IBM Plex Sans', Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace; }
+    .link { stroke: #2e4775; stroke-width: 2; stroke-dasharray: 4 6; animation: flow 1s linear infinite; }
+    @keyframes flow { to { stroke-dashoffset: -10; } }
+    .halo { opacity: 0; animation: halo 4.5s ease-in-out infinite; }
+    @keyframes halo { 0%, 100% { opacity: 0; } 8% { opacity: .9; } 22% { opacity: 0; } }
+    .packet { animation: travel 4.5s linear infinite; }
+    @keyframes travel { 0% { transform: translateX(0); opacity: 0; } 3% { opacity: 1; } 97% { opacity: 1; } 100% { transform: translateX(968.0px); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+  <rect width="1280" height="300" rx="22" fill="#0a1426"/>
+  <rect width="1280" height="300" rx="22" fill="url(#g)"/>
+  <rect x=".5" y=".5" width="1279" height="299" rx="22" fill="none" stroke="#dce7fa" stroke-opacity=".1"/>
+  <text x="640.0" y="40" text-anchor="middle" fill="#8ea3c8" font-size="13" letter-spacing="1.6" font-weight="600">FROM SOURCE TO STEP-BY-STEP REPLAY</text>
+  <path d="M 264.0 152.0 H 290.0" class="link"/><path d="M 506.0 152.0 H 532.0" class="link"/><path d="M 748.0 152.0 H 774.0" class="link"/><path d="M 990.0 152.0 H 1016.0" class="link"/>
+  
+  <g>
+    <rect x="50.0" y="64" width="212" height="176" rx="14" fill="#0d1a31" stroke="#60a5fa" stroke-opacity=".35"/>
+    <rect class="halo" x="50.0" y="64" width="212" height="176" rx="14" fill="none" stroke="#60a5fa" stroke-width="2" style="animation-delay:-0.36s"/>
+    <circle cx="88.0" cy="106" r="22" fill="#60a5fa" fill-opacity=".12"/>
+    <g transform="translate(88.0 106)" fill="none" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M-9 -8 L-17 0 L-9 8 M9 -8 L17 0 L9 8 M4 -12 L-4 12" /></g>
+    <text x="70.0" y="160" fill="#dce7fa" font-size="17" font-weight="600">Your code</text>
+    <text x="70.0" y="186" fill="#8ea3c8" font-size="12.5">any single-file JS program</text>
+    <text x="70.0" y="204" fill="#8ea3c8" font-size="12.5"></text>
+    <text x="244.0" y="94" text-anchor="end" fill="#64799f" font-size="12" class="mono">01</text>
+  </g>
+  <g>
+    <rect x="292.0" y="64" width="212" height="176" rx="14" fill="#0d1a31" stroke="#a78bfa" stroke-opacity=".35"/>
+    <rect class="halo" x="292.0" y="64" width="212" height="176" rx="14" fill="none" stroke="#a78bfa" stroke-width="2" style="animation-delay:0.77s"/>
+    <circle cx="330.0" cy="106" r="22" fill="#a78bfa" fill-opacity=".12"/>
+    <g transform="translate(330.0 106)" fill="none" stroke="#a78bfa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="-10" r="4"/><circle cx="-12" cy="10" r="4"/><circle cx="12" cy="10" r="4"/><path d="M0 -6 V2 M0 2 H-12 V6 M0 2 H12 V6"/></g>
+    <text x="312.0" y="160" fill="#dce7fa" font-size="17" font-weight="600">Instrument</text>
+    <text x="312.0" y="186" fill="#8ea3c8" font-size="12.5">Babel adds a hook to every</text>
+    <text x="312.0" y="204" fill="#8ea3c8" font-size="12.5">statement, call and await</text>
+    <text x="486.0" y="94" text-anchor="end" fill="#64799f" font-size="12" class="mono">02</text>
+  </g>
+  <g>
+    <rect x="534.0" y="64" width="212" height="176" rx="14" fill="#0d1a31" stroke="#fbbf24" stroke-opacity=".35"/>
+    <rect class="halo" x="534.0" y="64" width="212" height="176" rx="14" fill="none" stroke="#fbbf24" stroke-width="2" style="animation-delay:1.89s"/>
+    <circle cx="572.0" cy="106" r="22" fill="#fbbf24" fill-opacity=".12"/>
+    <g transform="translate(572.0 106)" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M0 -14 L13 -8 V2 C13 9 7 13 0 15 C-7 13 -13 9 -13 2 V-8 Z"/><path d="M-5 1 L-1 5 L6 -3"/></g>
+    <text x="554.0" y="160" fill="#dce7fa" font-size="17" font-weight="600">Sandbox</text>
+    <text x="554.0" y="186" fill="#8ea3c8" font-size="12.5">a fresh Web Worker runs it</text>
+    <text x="554.0" y="204" fill="#8ea3c8" font-size="12.5">with virtual time and queues</text>
+    <text x="728.0" y="94" text-anchor="end" fill="#64799f" font-size="12" class="mono">03</text>
+  </g>
+  <g>
+    <rect x="776.0" y="64" width="212" height="176" rx="14" fill="#0d1a31" stroke="#34d399" stroke-opacity=".35"/>
+    <rect class="halo" x="776.0" y="64" width="212" height="176" rx="14" fill="none" stroke="#34d399" stroke-width="2" style="animation-delay:3.02s"/>
+    <circle cx="814.0" cy="106" r="22" fill="#34d399" fill-opacity=".12"/>
+    <g transform="translate(814.0 106)" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M-8 -9 H14 M-8 0 H14 M-8 9 H8"/><circle cx="-14" cy="-9" r="1.6"/><circle cx="-14" cy="0" r="1.6"/><circle cx="-14" cy="9" r="1.6"/></g>
+    <text x="796.0" y="160" fill="#dce7fa" font-size="17" font-weight="600">Trace</text>
+    <text x="796.0" y="186" fill="#8ea3c8" font-size="12.5">typed events: enter, schedule,</text>
+    <text x="796.0" y="204" fill="#8ea3c8" font-size="12.5">enqueue, checkpoint…</text>
+    <text x="970.0" y="94" text-anchor="end" fill="#64799f" font-size="12" class="mono">04</text>
+  </g>
+  <g>
+    <rect x="1018.0" y="64" width="212" height="176" rx="14" fill="#0d1a31" stroke="#22d3ee" stroke-opacity=".35"/>
+    <rect class="halo" x="1018.0" y="64" width="212" height="176" rx="14" fill="none" stroke="#22d3ee" stroke-width="2" style="animation-delay:4.14s"/>
+    <circle cx="1056.0" cy="106" r="22" fill="#22d3ee" fill-opacity=".12"/>
+    <g transform="translate(1056.0 106)" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M-14 -11 V11 M-4 -11 V11 L12 0 Z"/></g>
+    <text x="1038.0" y="160" fill="#dce7fa" font-size="17" font-weight="600">Replay</text>
+    <text x="1038.0" y="186" fill="#8ea3c8" font-size="12.5">snapshots make every step</text>
+    <text x="1038.0" y="204" fill="#8ea3c8" font-size="12.5">instant, forward or back</text>
+    <text x="1212.0" y="94" text-anchor="end" fill="#64799f" font-size="12" class="mono">05</text>
+  </g>
+  <path d="M 156.0 264 H 1124.0" stroke="#22385f" stroke-width="1.5" stroke-dasharray="2 5"/>
+  <g class="packet"><circle cx="156.0" cy="264" r="8" fill="#22d3ee" opacity=".5" filter="url(#blur)"/><circle cx="156.0" cy="264" r="4" fill="#ecfeff"/></g>
+</svg>
