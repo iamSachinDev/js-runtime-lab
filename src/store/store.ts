@@ -4,7 +4,7 @@ import type { RuntimeMode, TraceEvent } from '../engine/types';
 import { DEFAULT_EXAMPLE, EXAMPLES } from '../examples';
 import { runInSandbox, SandboxError, type SandboxRun } from '../sandbox/client';
 
-export const SPEEDS = [0.25, 0.5, 1, 2, 4] as const;
+export const SPEEDS = [0.01, 0.25, 0.5, 1, 2, 4] as const;
 export type Speed = (typeof SPEEDS)[number];
 export type InspectorTab = 'variables' | 'promises' | 'graph';
 export type MobileView = 'code' | 'runtime' | 'explain' | 'timeline';
