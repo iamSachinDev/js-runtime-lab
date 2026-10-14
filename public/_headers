@@ -1,0 +1,8 @@
+# Production security headers (Netlify / Cloudflare Pages format).
+# 'unsafe-eval' is required: the sandbox worker compiles instrumented code with new Function().
+# connect-src 'none' blocks network access from both the page and the execution worker.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:; connect-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Cross-Origin-Opener-Policy: same-origin
