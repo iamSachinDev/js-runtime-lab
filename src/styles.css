@@ -67,6 +67,8 @@
 .board-loop { display: grid; gap: 12px; min-height: 0; grid-template-columns: minmax(196px, 0.9fr) minmax(0, 1.2fr); }
 @container board (max-width: 760px) {
   .board-grid, .board-right { height: auto; }
+  /* The board scrolls as a whole here; a stretched call stack would push its frames (stacked from the bottom) out of view. */
+  .board-grid { align-items: start; }
   .board-loop { grid-template-columns: 1fr; }
 }
 @container board (max-width: 540px) {
